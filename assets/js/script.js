@@ -56,14 +56,6 @@ var endScreen = function(){
 
 }
 
-/*var awaitAnswer = function(){
-    var answered = false;
-
-    while (!answered){
-
-    }
-}*/
-
 var quizPage = function(questionNumber){
 
     var frontPage = document.getElementById('front-page');
@@ -76,6 +68,7 @@ var quizPage = function(questionNumber){
     
     var quizTitle = document.createElement("h2");
     quizTitle.className = "quiz-title";
+
     var quizQuestionA = document.createElement("button");
     quizQuestionA.className = "quiz-button";
 
@@ -131,6 +124,7 @@ function scoreHandler() {
       time--;
   
       if(time < 0){
+        endScreen();
         countDown.textContent = "";
         clearInterval(interval);
       }
