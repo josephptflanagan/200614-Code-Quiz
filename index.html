@@ -11,7 +11,7 @@
 <body>
     <header>
         <div>
-            <a class="high-scores" href="high-score.html">View high scores</a>
+            <button class="view-high-scores" id="view-high-scores">View high scores</button>
         </div>
         <div>
             <p class="count-down" id="count-down">Time: 75</p>
@@ -19,6 +19,7 @@
     </header>
     <main>
 
+        <!-- START FRONT PAGE ---- FRONT PAGE ---- FRONT PAGE START -->
         <section id="front-page">
             <div>
                 <h1>Coding Quiz Challenge</h1>
@@ -30,7 +31,9 @@
                 <button class="btn" id="start-button">Start Quiz</button>
             </div>
         </section>
+        <!-- FRONT PAGE ---- FRONT PAGE ---- FRONT PAGE -->
 
+        <!-- START QUIZ PAGE ---- QUIZ PAGE ---- QUIZ PAGE START -->
         <section class="quiz-page" id="quiz-page">
             <div id="question-div">
                 <h2 class="question" id="question"></h2>
@@ -47,26 +50,50 @@
                 <h3 class="previous" id="previous"></h3>
             </div>
         </section>
+        <!-- QUIZ PAGE ---- QUIZ PAGE ---- QUIZ PAGE -->
 
+        <!-- START END PAGE ---- END PAGE ---- END PAGE START -->
         <section class="end-page" id="end-page">
 
             <div>
                 <h2>All done!</h2>
             </div>
-           
-            <div class="final-score">
-                <p>Your final score is </p>
-                <p id="score"></p>
-            </div>
-
-            <div>
-                <label for="initial-box">Enter Initials:</label>
-                <input class="initial-box" id="initial-box">
-                <button class="score-button" id="score-button"></button>
+            <div class='final-score-div'>
+                <div class="final-score-form">
+                    <div class="final-score">
+                        <p id='score'></p>
+                    </div>
+                    <div>
+                        <label for="initial-box">Enter Initials:</label>
+                        <input class="initial-box" id="initial-box">
+                        <button class="score-button" id="score-button"></button>
+                    </div>
+                </div>
             </div>
 
         </section>
+        <!-- END PAGE ---- END PAGE ---- END PAGE -->
 
+        <!-- START HIGH SCORE PAGE ---- HIGH SCORE PAGE ---- HIGH SCORE PAGE START -->
+        <section class="high-score-page" id="high-score-page">
+
+            <div>
+                <h2>High Scores</h2>
+            </div>
+            <div>
+                <table id="high-score-table">
+
+                </table>
+            </div>
+            <section>
+                <div class="btn-div">
+                    <button class="btn" id="go-back">Go back</button>
+                    <button class="btn" id="clear-high-score">Clear high scores</button>
+                </div>
+            </section>
+
+        </section>
+        <!-- HIGH SCORE PAGE ---- HIGH SCORE PAGE ---- HIGH SCORE PAGE -->
 
     </main>
     <footer>
