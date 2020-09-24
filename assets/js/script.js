@@ -1,119 +1,114 @@
 var time = 75;
+var itterator = 0;
+var results = []
+var highScores = []
 
-var table = document.getElementById("#high-score-table");
-var countDown = document.getElementById('count-down');
+var table = document.querySelector("#high-score-table");
+var countDown = document.querySelector('#count-down');
+
+var frontPage = document.querySelector('#front-page');
 var startButton = document.querySelector('#start-button');
+
+var quizPage = document.querySelector('#quiz-page');
+var questionDiv = document.querySelector('#question-div');
+var answerDiv = document.querySelector('#answer-div');
+
+var questionEl = document.querySelector("#question");
+var answerZeroEl = document.querySelector("#buttonZero");
+var answerOneEl = document.querySelector("#buttonOne");
+var answerTwoEl = document.querySelector("#buttonTwo");
+var answerThreeEl = document.querySelector("#buttonThree");
+var previousEl = document.querySelector("#previous");
+
+var endPage = document.querySelector("#end-page");
 
 var slideOne = {
     question: "Commonly used data types DO not Include: ",
-    a:"1. strings",
-    b:"2. booleans",
-    c:"3. alerts",
-    d:"4. numbers",
-    correct: 3
+    answers: ["1. strings","2. booleans", "3. alerts", "4. numbers"],
+    correctIndex: 2
 };
 
 var slideTwo = {
     question: "The condition in an if/else statement is enclosed with: ",
-    a:"1. quotes",
-    b:"2. curly brackets",
-    c:"3. parenthesis",
-    d:"4. square brackets",
-    correct: 3
+    answers:["1. quotes", "2. curly brackets", "3. parenthesis", "4. square brackets"],
+    correctIndex: 2
 };
 
 var slideThree = {
     question: "Arrays in JavaScript can be used to store: ",
-    a:"1. numbers and strings",
-    b:"2. other arrays",
-    c:"3. booleans",
-    d:"4. all of the above",
-    correct: 4
+    answers:["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"],
+    correctIndex: 3
 };
 
 var slideFour = {
     question: "String values must be enclosed within _______ when being assigned to variables",
-    a:"1. commas",
-    b:"2. curly brackets",
-    c:"3. quotes",
-    d:"4. parenthesis",
-    correct: 3
+    answers:["1. commas", "2. curly brackets", "3. quotes", "4. parenthesis"],
+    correctIndex: 2
 };
 
 var slideFive = {
     question: "A very useful tool used during development and debugging for printing content to the debugger is: ",
-    a:"1. JavaScript",
-    b:"2. terminal/bash",
-    c:"3. for loops",
-    d:"4. console.log",
-    correct: 4
+    answers:["1. JavaScript",  "2. terminal/bash", "3. for loops", "4. console.log"],
+    correctIndex: 3
 };
 
 var questionSlides = [slideOne, slideTwo, slideThree, slideFour, slideFive];
-var answers = [0,0,0,0];
 
-var endScreen = function(){
+
+function question(){
+
+    questionEl.textContent = questionSlides[itterator].question;
+    answerZeroEl.textContent = questionSlides[itterator].answers[0];
+    answerOneEl.textContent = questionSlides[itterator].answers[1];
+    answerTwoEl.textContent = questionSlides[itterator].answers[2];
+    answerThreeEl.textContent = questionSlides[itterator].answers[3];
+
+    if(itterator > 0){
+        previousEl.textContent = results[itterator-1]
+    }
 
 }
 
-var quizPage = function(questionNumber){
-
-    var frontPage = document.getElementById('front-page');
-    frontPage.setAttribute("style", "display: none;");
-
-    var questionDiv = document.getElementById('question-div');
-
-    var quizPage = document.getElementById('quiz-page');
-    quizPage.setAttribute("style", "display: block;")
+function answerHandler(answer){
     
-    var quizTitle = document.createElement("h2");
-    quizTitle.className = "quiz-title";
 
-    var quizQuestionA = document.createElement("button");
-    quizQuestionA.className = "quiz-button";
+    if(answer == questionSlides[itterator].correctIndex){
+        results.push("Correct")
+    }
+    else{
+        results.push("Incorrect")
+    }
 
-    var quizQuestionB = document.createElement("button");
-    quizQuestionB.className = "quiz-button";
+    itterator++;
 
-    var quizQuestionC = document.createElement("button");
-    quizQuestionC.className = "quiz-button";
+    if(itterator <= 4){
+        question();
+    }
+    else{
+        endScreen();
+    }
+}
 
-    var quizQuestionD = document.createElement("button");
-    quizQuestionD.className = "quiz-button";
 
+function endScreen (){
 
-    quizTitle.textContent = questionSlides[questionNumber].question;
-    quizQuestionA.textContent = questionSlides[questionNumber].a;
-    quizQuestionB.textContent = questionSlides[questionNumber].b;
-    quizQuestionC.textContent = questionSlides[questionNumber].c;
-    quizQuestionD.textContent = questionSlides[questionNumber].d;
-
-    questionDiv.appendChild(quizQuestionA);
-    questionDiv.appendChild(quizQuestionB);
-    questionDiv.appendChild(quizQuestionC);
-    questionDiv.appendChild(quizQuestionD);
-
-    quizPage.appendChild(quizTitle);
-    quizPage.appendChild(questionDiv);
+    
+    quizPage.setAttribute("style", "display: none;")
+    endPage.setAttribute("style", "display: block;");
 
 }
 
-var quizFunction = function(){
+function quizInitializer() {
+
+    frontPage.setAttribute("style", "display: none;");
+    quizPage.setAttribute("style", "display: block;");
+    
 
     scoreHandler();
 
-    var answered = false;
+    question();
 
-    var a = []
-
-    for(var i = 0;i<questionSlides.length;i++){
-        answers[i] = quizPage(i);
-        if(answers[i] !== questionSlides[i].correct){
-            //time-=10;
-        }
-    };
-
-    endScreen();
+    //endScreen();
 }
 
 function scoreHandler() {
@@ -133,13 +128,17 @@ function scoreHandler() {
     
   }
 
-var tableHandler = function(){
+function tableHandler() {
     var highScoreMaker = document.querySelector("input[name='name']").value;
     
 };   
 
-var createRowEl = function(){
+function createRowEl() {
 
 };
 
-startButton.addEventListener("click", quizFunction);
+startButton.addEventListener("click",quizInitializer);
+answerZeroEl.addEventListener("click", function(){answerHandler(0)});
+answerOneEl.addEventListener("click",  function(){answerHandler(1)});
+answerTwoEl.addEventListener("click",  function(){answerHandler(2)});
+answerThreeEl.addEventListener("click",  function(){answerHandler(3)});

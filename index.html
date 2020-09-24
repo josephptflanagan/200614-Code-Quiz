@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
     <title>Code Quiz</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+
 <body>
     <header>
         <div>
@@ -16,23 +18,61 @@
         </div>
     </header>
     <main>
+
         <section id="front-page">
-            <h1>Coding Quiz Challenge</h1> 
-            <p class="explaination">Try to answer the following code related questions within the time limit.</p>
-            <p  class="explaination">Keep in mind that incorrect answers will penalize your score/time by 10 seconds!</p>
-            <div class="button-holster">
+            <div>
+                <h1>Coding Quiz Challenge</h1>
+                <p class="explaination">Try to answer the following code related questions within the time limit.</p>
+                <p class="explaination">Keep in mind that incorrect answers will penalize your score/time by 10 seconds!
+                </p>
+            </div>
+            <div class="start-button-div">
                 <button class="btn" id="start-button">Start Quiz</button>
             </div>
         </section>
+
         <section class="quiz-page" id="quiz-page">
-            <div class="question-div" id="question-div"></div>
+            <div id="question-div">
+                <h2 class="question" id="question"></h2>
+            </div>
+            <div class="answer-centering-div">
+                <div class="answer-div" id="answer-div">
+                    <button class="quiz-button" id="buttonZero"></button>
+                    <button class="quiz-button" id="buttonOne"></button>
+                    <button class="quiz-button" id="buttonTwo"></button>
+                    <button class="quiz-button" id="buttonThree"></button>
+                </div>
+            </div>
+            <div class="previous-div">
+                <h3 class="previous" id="previous"></h3>
+            </div>
         </section>
 
-        
+        <section class="end-page" id="end-page">
+
+            <div>
+                <h2>All done!</h2>
+            </div>
+           
+            <div class="final-score">
+                <p>Your final score is </p>
+                <p id="score"></p>
+            </div>
+
+            <div>
+                <label for="initial-box">Enter Initials:</label>
+                <input class="initial-box" id="initial-box">
+                <button class="score-button" id="score-button"></button>
+            </div>
+
+        </section>
+
+
     </main>
     <footer>
-        
+
     </footer>
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>
