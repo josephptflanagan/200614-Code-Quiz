@@ -96,12 +96,12 @@ table{
     text-align: left;
     display: block;
     width:25%
-
 }
 
 .answer-centering-div{
     display:flex;
     margin-top:10px;
+    margin-bottom: 20px;
     align-items: center;
     justify-content: center; 
 }
@@ -111,8 +111,37 @@ table{
     width: 75%;
 }
 
+.previous-div{
+    font-size: 36px;
+    font-weight: bold;
+    color: slategray;
+    text-align: center;
+    vertical-align: center;
+    border-top: 2px solid slategray;
+    margin-top: 10px;
+}
+
 .final-score{
     display:flex;
+}
+
+.score-button{
+    color: white;
+    background-color: magenta;
+    padding:5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    margin: auto;
+    text-align: center;
+}
+
+.initial-label{
+    font-size: 24px;
+}
+
+.initial-box{
+    font-size: 24px;
 }
 
 .high-score-page{
@@ -129,4 +158,12 @@ table{
 .final-score-form{
     display:block;
     width:50%;
+}
+
+.high-score-centering-div{
+    display:flex;
+    margin-top:10px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center; 
 }
