@@ -1,10 +1,10 @@
 # Code Quiz
 
 ## GitHub Repository
-https://github.com/josephptflanagan/200614-Code-Quiz
+https://github.com/josephptflanagan/20200614-Code-Quiz
 
 ## Site URL
-https://josephptflanagan.github.io/200614-Code-Quiz/
+https://josephptflanagan.github.io/20200614-Code-Quiz/
 
 ## Screenshot
 https://github.com/josephptflanagan/200614-Code-Quiz/blob/master/source-material/start-screen.png
