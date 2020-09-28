@@ -146,6 +146,9 @@ function createTableEntry() {
     //call the score sort function
     scoreSort();
 
+    //save the scores to local storage
+    saveScores();
+
     //call the high score page
     highScoreHandler();
 }
@@ -162,6 +165,10 @@ function highScoreHandler() {
     //Enable High Score Page html
     highScorePageEl.setAttribute("style", "display: block;");
 
+    //load highScores
+    loadScores();
+
+    //empty the table
     highScoreTableEl.innerHTML = "";
 
     for (let i = 0; i < highScores.length; i++) {
@@ -210,6 +217,7 @@ function scoreSort() {
 function clearScores() {
 
     highScores = [];
+    localStorage.clear();
     highScoreHandler();
     window.alert("High Scores Cleared");
 
@@ -247,6 +255,17 @@ function scoreTimer() {
         endScreenHandler(0);
     }
 
+}
+
+function saveScores(){
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+}
+
+function loadScores(){
+    highScores = JSON.parse(localStorage.getItem("highScores"));
+    if (!highScores){
+        highScores = [];
+    }
 }
 
 //Adds Event Listeners for the omnipresent buttons that don't
