@@ -34,6 +34,7 @@ p{
 }
 
 .count-down{
+    display:none;
     margin:auto 10px auto auto;
     float:right;
     text-align: right;
@@ -44,10 +45,6 @@ p{
     color: magenta;
     text-decoration: none;
     float: left;
-}
-
-table{
-    font-size: 25px;
 }
 
 .quiz-page{
@@ -136,18 +133,6 @@ table{
     text-align: center;
 }
 
-.initial-label{
-    font-size: 24px;
-}
-
-.initial-box{
-    font-size: 24px;
-}
-
-.high-score-page{
-    display:none;
-}
-
 .final-score-div{
     display:flex;
     margin-top:10px;
@@ -160,10 +145,39 @@ table{
     width:50%;
 }
 
+.initial-label{
+    font-size: 24px;
+}
+
+.initial-box{
+    font-size: 24px;
+}
+
+.high-score-page{
+    display:none;
+}
+
 .high-score-centering-div{
     display:flex;
     margin-top:10px;
     margin-bottom: 20px;
     align-items: center;
     justify-content: center; 
+}
+
+.high-score-blocking-div{
+    display:block;
+}
+
+.high-score-table-div{
+    font-size: 32px;
+    background-color: #bb99ff;
+}
+
+tr{
+    border-bottom:1px solid gray;
+}
+
+.high-score-button-div{
+    margin-top: 20px;
 }

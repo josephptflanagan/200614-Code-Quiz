@@ -1,6 +1,7 @@
 //overriding global variables
 var time = 75;
 var itterator = 0;
+var score = 0;
 var results = [];
 var highScores = [];
 
@@ -107,13 +108,14 @@ function answerHandler(answer) {
         quizPageHandler();
     }
     else {
-        let score = time;
-        endScreenHandler(score);
+        score = time;
+        //debugger;
+        endScreenHandler();
     }
 }
 
 //Initializes the End Screen
-function endScreenHandler(score) {
+function endScreenHandler() {
 
     //Hide Quiz Page html, Enable End Page html
     quizPageEl.setAttribute("style", "display: none;");
@@ -122,38 +124,34 @@ function endScreenHandler(score) {
 
     //Stops the Timer
     clearInterval(timerVar);
-    
+
     //populates the score on the page
     scoreEl.textContent = "Your final score is   " + score;
 
-    //grabs user input from input and sends it along with the user
-    //score to the high score page handler
-    function retrieveInitials(){
+}
 
-        let initials = document.getElementById("initial-box").value;
-        let tempHighScore = [initials, score]
+//grabs user input from input and sends it along with the user
+//score to the high score page handler
+function createTableEntry() {
 
-        //adds the new score to the high score page
-        console.log("pushing: ", tempHighScore);
-        highScores.push(tempHighScore)
+    let initials = document.getElementById("initial-box").value;
+    let tempHighScore = {
+        name: initials,
+        score: score
+    };
 
-        //call the score sort function
-        //scoreSort();
+    //adds the new score to the high score page
+    highScores.push(tempHighScore)
 
-        //call the high score page
-        highScoreHandler();
-    }
+    //call the score sort function
+    scoreSort();
 
-    //Adds an event listener to the score button so that it can be used to get
-    //the user input using the retrieve initials function
-    scoreButtonEl.addEventListener("click", function () { retrieveInitials() });
-
+    //call the high score page
+    highScoreHandler();
 }
 
 //Makes the High Score page visible
 function highScoreHandler() {
-
-    console.log(highScores)
 
     //Hide Front Page html, End Page html, high score button, and CountDown
     frontPageEl.setAttribute("style", "display: none;");
@@ -162,13 +160,13 @@ function highScoreHandler() {
     countDownEl.textContent = "";
 
     //Enable High Score Page html
-    highScorePageEl.setAttribute("style", "display: block;"); 
-    
-    //cycle through the high scores and populate the high scores table
-    for(let i = 0;i < highScores.length;i++){
-        
+    highScorePageEl.setAttribute("style", "display: block;");
+
+    highScoreTableEl.innerHTML = "";
+
+    for (let i = 0; i < highScores.length; i++) {
         //create the contents of a cell
-        let cellFill = (i+1) + ". " + highScores[i][0] + " - " + highScores[i][1]
+        let cellFill = (i + 1) + ". " + highScores[i].name + " - " + highScores[i].score
 
         //create a row
         let row = highScoreTableEl.insertRow(i);
@@ -178,13 +176,13 @@ function highScoreHandler() {
 
         //fill the cell with generated contents
         cell.innerHTML = cellFill;
+    }
 
-    }   
 
 }
 
- 
-function returnToFront(){
+
+function returnToFront() {
     //hides the high score page
     highScorePageEl.setAttribute("style", "display: none;");
 
@@ -192,26 +190,27 @@ function returnToFront(){
     frontPageEl.setAttribute("style", "display: block;");
     viewHighScoreEl.setAttribute("style", "display: block;");
 
-    //reset the itterator and timer
+    //reset the itterator, timer, score, results, previous answer result
     time = 75;
     itterator = 0;
+    score = 0;
+    results = [];
+    previousEl.textContent = "";
 
 }
 
-function scoreSort(){
+function scoreSort() {
 
-    highScores = highScores.sort(function(a,b){
-        if(a[0] == b[0]){
-            return a[1] - b[1];
-        }
-        return b[0] - a[0];
+    highScores = highScores.sort(function (a, b) {
+        return b.score - a.score;
     });
 
 }
 
-function clearScores(){
+function clearScores() {
 
     highScores = [];
+    highScoreHandler();
     window.alert("High Scores Cleared");
 
 }
@@ -223,8 +222,9 @@ function quizInitializer() {
     viewHighScoreEl.setAttribute("style", "display: none;");
     frontPageEl.setAttribute("style", "display: none;");
 
-    //populates the quiz page elements
+    //populates the quiz page elements, enables view of timer
     quizPageEl.setAttribute("style", "display: block;");
+    countDownEl.setAttribute("style", "display: block;");
 
     //starts the timer
     timerVar = setInterval(scoreTimer, 1000)
@@ -253,6 +253,7 @@ function scoreTimer() {
 //have to send user created data
 viewHighScoreEl.addEventListener("click", highScoreHandler);
 startButtonEl.addEventListener("click", quizInitializer);
+scoreButtonEl.addEventListener("click", createTableEntry);
 answerZeroEl.addEventListener("click", function () { answerHandler(0) });
 answerOneEl.addEventListener("click", function () { answerHandler(1) });
 answerTwoEl.addEventListener("click", function () { answerHandler(2) });
